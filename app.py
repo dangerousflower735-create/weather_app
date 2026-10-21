@@ -26,34 +26,58 @@ if st.button("Get Weather & Prayer Times", type="primary"):
             st.error("Could not fetch data. Check the city and internet connection.")
             st.caption(str(error))
 
+st.markdown("### 🎨 Theme Preview")
+preview_theme = st.selectbox(
+    "Choose a theme",
+    ["Auto (Based on Temperature)", "Blue Moon 🌙", "Orange Sun ☀️"],
+)
 temperature = st.session_state.get("temperature")
 weather_city = st.session_state.get("weather_city")
 prayer_times = st.session_state.get("prayer_times")
 
-if temperature is None:
+
+if preview_theme == "Blue Moon 🌙":
+    theme = "moon"
+    title = "A calm, moonlit day"
+    subtitle = "A little warmth, a moment of peace."
+    weather_icon = "🌙"
+    description = "Cool weather"
+
+elif preview_theme == "Orange Sun ☀️":
+    theme = "sun"
+    title = "Chasing the sunshine"
+    subtitle = "Stay cool, stay grateful, keep your salah."
+    weather_icon = "☀️"
+    description = "Warm weather"
+
+elif temperature is None:
     theme = "moon"
     title = "Your sky, your salah"
     subtitle = "Discover your weather and daily prayer times."
     weather_icon = "🌙"
     description = "Enter your city to get started."
+
 elif temperature <= 15:
     theme = "moon"
     title = "A calm, moonlit day"
     subtitle = "A little warmth, a moment of peace."
     weather_icon = "🌙"
     description = "Cool weather"
+
 elif temperature >= 30:
     theme = "sun"
     title = "Chasing the sunshine"
     subtitle = "Stay cool, stay grateful, keep your salah."
     weather_icon = "☀️"
     description = "Warm weather"
+
 else:
     theme = "twilight"
     title = "A beautiful day to begin"
     subtitle = "Check the sky. Make time for prayer."
     weather_icon = "🌤️"
     description = "Mild weather"
+
 
 if theme == "moon":
     background = "linear-gradient(135deg, #06152f, #123c70, #071020)"
