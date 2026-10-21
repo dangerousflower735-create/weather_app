@@ -14,6 +14,11 @@ def test_weather_message_formats_temperature() -> None:
     assert weather_message("Karachi", 30.5) == "The temperature in Karachi is 30.5 C."
 
 
+def test_weather_message_handles_whole_number() -> None:
+    """weather_message should show a whole-number temperature with a decimal point."""
+    assert weather_message("Lahore", 25.0) == "The temperature in Lahore is 25.0 C."
+
+
 def test_get_api_key_returns_value_when_set(monkeypatch: pytest.MonkeyPatch) -> None:
     """get_api_key should return the key when the environment variable is set."""
     monkeypatch.setenv("OPENWEATHER_API_KEY", "test-key-123")
@@ -21,7 +26,7 @@ def test_get_api_key_returns_value_when_set(monkeypatch: pytest.MonkeyPatch) -> 
 
 
 def test_get_api_key_raises_when_missing(monkeypatch: pytest.MonkeyPatch) -> None:
-    """get_api_key should raise a clear error when the key is not set."""
+    """get_api_key should raise an error when the key is not set."""
     monkeypatch.delenv("OPENWEATHER_API_KEY", raising=False)
     with pytest.raises(ValueError):
         get_api_key()
