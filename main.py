@@ -1,4 +1,10 @@
-print("Mera weather app shuroo hogaya!")
-print("Weather app ka pehla version tayyar hai!")
-print("Git ka test line")print("Weather app ka pehla function yahan aayega")
-print("Weather app ka dusra function yahan aayega")
+"""Weather app ka pehla function."""
+
+def greet_user(name: str) -> str:
+    """User ko welcome message wapas karta hai."""
+    return f"Assalam o Alaikum, {name}! Weather app mein khush aamdeed."
+
+
+if __name__ == "__main__":
+    print(greet_user("Shafaq"))
+    print(greet_user("Ahmed"))
